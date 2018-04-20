@@ -1,0 +1,48 @@
+const express = require('express');
+const session=require('express-session');
+const bodyParser = require('body-parser');
+const cors =require('cors');
+const massive = require('massive');
+require('dotenv').config();
+const app = express();
+const checkForSession = require('./checkForSession');
+
+app.use(cors());
+app.use(bodyParser.json());
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    secure: false
+}));
+
+app.use(checkForSession);
+
+//app.use(express.static('../build'));//////////////run  npm run build in houser folder and include this line, you have to run this npm run build everytime you make a change in the react.
+
+massive(process.env.CONNECTION_STRING).then(db => {         
+    app.set('db',db);
+}).catch(err => console.error(err));
+
+
+ const login_Controller= require('./controllers/login_controller');
+ const Trigger_Controller=require('./controllers/trigger_controller');
+
+// app.get('/api/users',Property_Controller.getUsers);
+app.post('/api/login', login_Controller.login);
+app.get('/api/me', login_Controller.getUserInfo);
+app.post('/api/logout',login_Controller.logout);
+app.get('/api/triggers',Trigger_Controller.getTriggers);
+app.get('/api/:triggersourcedataid',Trigger_Controller.getTrigger);
+app.put('/api/:triggersourcedataid',Trigger_Controller.updateTriggerStatus);
+app.post('/api/ae/:triggersourcedataid',Trigger_Controller.createAdverseEvent);
+app.get('/api/comments/:triggersourcedataid',Trigger_Controller.getComment);
+app.post('/api/comments/:triggersourcedataid',Trigger_Controller.createComment);
+
+
+// app.post('/api/property',Property_Controller.addProperty);
+// app.delete('/api/property',Property_Controller.deleteProperty);
+
+const port = process.env.PORT || 8888;
+app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
