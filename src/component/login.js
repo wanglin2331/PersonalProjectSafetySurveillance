@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './login.css';
 import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
 import {login} from "../redux/reducers/user";
@@ -29,19 +30,19 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="login">
-                
-                    {/* <img src = {loginIMG} alt="Houser"/> */}
-                    
-                    Username
-                    <input onChange={ (e) => this.handleChangeUsername(e.target.value) }></input>
-                    Password
-                    <input onChange={ (e) => this.handleChangePassword(e.target.value) }></input>
-                    
-                    <div>
-                    <Link to={"/triggers"}><button onClick={()=>this.login()}>Login</button></Link> 
+            <div className="App">
+                <div className="body">
+                    <div className="login">
+                        Username
+                        <input onChange={ (e) => this.handleChangeUsername(e.target.value) }></input>
+                        Password
+                        <input onChange={ (e) => this.handleChangePassword(e.target.value) }></input>
+                        
+                        <div>
+                            <Link to={"/triggers"}><button onClick={()=>this.login()}>Login</button></Link> 
+                        </div>
                     </div>
-
+                </div>
             </div>
         )
     }

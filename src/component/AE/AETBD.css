@@ -1,0 +1,284 @@
+.AEDectectBar {
+    
+    height: 61px;
+    border-bottom: 2px solid #C8C8C8;
+    border-right: 2px solid #C8C8C8;
+    background-color: #EEEEEE;
+    font-family: Open Sans,sans-serif!important;
+    font-size: 14px;
+    font-weight: 200;
+    color: #333;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 60px;
+    }
+
+.AEDetectButtonYes {
+    height: 40px;
+    width: 240px;
+    background-color: #dddddd;
+    border: 1px solid #C8C8C8;
+    font-size: 14px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.AEDetectButtonYesSelected {
+    height: 40px;
+    width: 240px;
+    background-color: #286C96;
+    border: 1px solid #286C96;
+    font-size: 14px;
+    color: white;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.AEDetectButtonNo {
+    height: 40px;
+    width: 160px;
+    background-color: #dddddd;
+    border-top: 1px solid #C8C8C8;
+    border-right: 1px solid #C8C8C8;
+    border-bottom: 1px solid #C8C8C8;
+    font-size: 14px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.AEDetectButtonNoSelected {
+    height: 40px;
+    width: 160px;
+    background-color: #286C96;
+    border: 1px solid #286C96;
+    font-size: 14px;
+    color: white;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.SaveCancelButton {
+    margin-right: 20px;
+}
+
+.SaveDisable {
+    margin-right: 20px;
+    border-radius: 5px;
+    height: 40px;
+    width: 120px;
+    background-color: #E3E3E3;
+    border: none;
+    color: #959595;
+    font-size: 14px;
+}
+
+.SaveButton {
+    border-radius: 5px;
+    height: 40px;
+    width: 120px;
+    background-color: #00954F;
+    border: none;
+    color: white;
+    font-size: 14px;
+}
+
+.CancelButton {
+    background-color: Transparent;
+    border: none;
+    color: #82ACE3;
+    font-size: 14px;
+    padding-right: 15px;
+
+}
+
+.AEInput {
+    font-size: 14px;
+    border-right: 2px solid #C8C8C8;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 60px;
+    padding-right: 30px;
+    padding-top: 10px;
+}
+
+.DTS {
+    margin-bottom: 15px;
+}
+
+.DTSInput{
+    margin-right: 30px;
+    height: 30px;
+}
+
+#POAcheckBox {
+    margin-left: 100px;
+}
+
+
+.AEDSCInput {
+    width: 780px;
+    height: 100px;
+    margin-bottom: 15px;
+}
+
+.Severity{
+    margin-bottom: 15px;
+}
+
+.severityButtonNotSelect {
+    height: 45px;
+    width: 45px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    background-color: #888888;
+}
+
+
+.severityButtonSelectA {
+    height: 45px;
+    width: 45px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    background-color: #E5B933;
+}
+
+.severityButtonSelectB {
+    height: 45px;
+    width: 45px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    background-color: #EEB627;
+}
+
+.severityButtonSelectC {
+    height: 45px;
+    width: 45px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    background-color: #E89D22;
+}
+
+.severityButtonSelectD {
+    height: 45px;
+    width: 45px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    background-color: #E38A1F;
+}
+
+.severityButtonSelectE {
+    height: 45px;
+    width: 45px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    background-color: #DC7B1E;
+}
+
+.severityButtonSelectF {
+    height: 45px;
+    width: 45px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    background-color: #DA6E1B;
+}
+
+.severityButtonSelectG {
+    height: 45px;
+    width: 45px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    background-color: #D05417;
+}
+
+.severityButtonSelectH {
+    height: 45px;
+    width: 45px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    background-color: #C04620;
+}
+
+.severityButtonSelectI {
+    height: 45px;
+    width: 45px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    background-color: #B91D18;
+}
+
+.AELocationInput {
+    height: 30px;
+    width: 780px;
+    margin-bottom: 15px;
+}
+
+.AECategoryInput {
+    height: 30px;
+    width: 780px;
+    margin-bottom: 15px;
+}
+
+#QIFLGcheckBox {
+    margin-left: 100px;
+}
+
+.NoAENotes {
+    font-size: 14px;
+    padding-left: 60px;
+    padding-top: 20px;
+    padding-right: 30px;
+    height: 800px;
+    border-right: 2px solid #C8C8C8;
+}
+
+
+
+
+.NoAENotes textarea{
+    width: 780px;
+    height: 200px;
+}

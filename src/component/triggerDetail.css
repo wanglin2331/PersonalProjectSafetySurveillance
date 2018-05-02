@@ -1,0 +1,87 @@
+.AEContent {
+    /* border: 2px solid black; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  .vl {
+    border-left: 2px solid #A1A1A1;
+    height: 35px;
+    /* margin-left: 15px; */
+    margin-right: 10px;
+}
+
+.BackArrow {
+    margin-left: 10px;
+    color: #A1A1A1;
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+.BackArrow:hover {
+    text-decoration: none;
+  }
+
+.AETriggerNMBar {
+    height: 50px;
+    border-bottom: 2px solid #C8C8C8;
+    background-color: #D7DDE4;
+    font-family: Open Sans,sans-serif!important;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+}
+
+
+.AEDetail{
+    width: calc(100% - 600px);
+    background-color: white;
+    /* border: 2px solid black; */
+}
+
+.DorC{
+    /* border: 2px solid black; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selectDorC{
+    width: 600px;
+    height: 61px;
+    border-bottom: 2px solid #C8C8C8;
+    background-color: #EEEEEE;
+    font-family: Open Sans,sans-serif!important;
+    /* border: 2px solid black; */
+    display: flex;
+    align-items: center;
+    
+}
+
+.selectDorC h4{
+    margin-left: 60px;
+    padding-top: 20px;
+    cursor: pointer;
+   
+}
+
+.Active{
+    border-bottom: 4px solid #00AEEF;
+    margin-top: 36px;
+    padding-bottom: 5px;
+    width: 120px;
+    text-align: center;
+}
+
+.Inactive {
+    border: none;
+    margin-top: 36px;
+    padding-bottom: 5px;
+    width: 120px;
+    text-align: center;
+}

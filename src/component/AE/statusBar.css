@@ -1,0 +1,42 @@
+.AEStatusBar {
+    height: 50px;
+    border-bottom: 2px solid #C8C8C8;
+    background-color: #E5E5E5;
+    font-family: Open Sans,sans-serif!important;
+    font-size: 14px;
+    font-weight: 200;
+    color: #333;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    align-items: center;
+    padding-left: 60px;
+    padding-right: 20px;
+
+    color: #767676;
+}
+
+.StatusSelect {
+    height: 30px;
+    width: 350px;
+    margin-right: 40px;
+    margin-left: 10px;
+}
+
+.AssignSelect{
+    height: 30px;
+    width: 200px;
+    margin-right: 40px;
+    margin-left: 10px;
+}
+
+.AEStatusBar button {
+    border-radius: 5px;
+    height: 35px;
+    width: 140px;
+    background-color: #009A51;
+    border: none;
+    color: white;
+    font-size: 14px;
+}

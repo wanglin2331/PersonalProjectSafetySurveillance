@@ -1,0 +1,58 @@
+.Nav-top {
+    height: 56px;
+    background-color: #384655;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #fff!important;
+    font-family: Open Sans,sans-serif!important;
+    box-sizing: border-box;
+    
+  }
+  
+  .App-logo {
+    width: 55px;
+    height: 56px;
+  }
+  
+  .App-title {
+    width: 230px;
+    margin-left: 25px;
+  }
+  
+  .Nav-bar {
+      /* box-sizing: border-box; */
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      margin-left: 0;
+      box-sizing: border-box;
+  }
+  
+  .Nav-tabs {
+    font-size: 15px;
+    font-weight: 700!important;
+    margin-left: 40px;
+    margin-bottom: 3px;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+
+
+  .NavActive {
+    font-size: 15px;
+    font-weight: 700!important;
+    margin-left: 40px;
+    margin-bottom: 3px;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-bottom: 5px solid #00AEEF;
+    margin-top: 29px;
+    padding-bottom: 8px;
+  }
+  
+  .Logout {
+    padding: 5px;
+    margin-right: 15px;
+  }

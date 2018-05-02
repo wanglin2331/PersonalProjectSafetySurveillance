@@ -28,6 +28,7 @@ massive(process.env.CONNECTION_STRING).then(db => {
 
  const login_Controller= require('./controllers/login_controller');
  const Trigger_Controller=require('./controllers/trigger_controller');
+ const encounter_Controller=require('./controllers/encounter_controller');
 
 // app.get('/api/users',Property_Controller.getUsers);
 app.post('/api/login', login_Controller.login);
@@ -39,6 +40,8 @@ app.put('/api/:triggersourcedataid',Trigger_Controller.updateTriggerStatus);
 app.post('/api/ae/:triggersourcedataid',Trigger_Controller.createAdverseEvent);
 app.get('/api/comments/:triggersourcedataid',Trigger_Controller.getComment);
 app.post('/api/comments/:triggersourcedataid',Trigger_Controller.createComment);
+app.get('/api/encounter/:encounterid',encounter_Controller.getEncounter);
+app.get('/api/encountertriggers/:mrn',encounter_Controller.getTriggersbyEncounter);
 
 
 // app.post('/api/property',Property_Controller.addProperty);

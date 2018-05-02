@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import logo from '../HCLogo.jpg';
+import './triggers.css';
+import statusimg from './status.png';
+import statusdoneimg from './statusdone.png';
 import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
-import {logout, getUserInfo} from "../redux/reducers/user";
+import {getUserInfo} from "../redux/reducers/user";
 import {getTriggers} from "../redux/reducers/triggers";
 import {selectTrigger} from "../redux/reducers/triggerDetail";
+import {selectEncounter, selectMRN} from "../redux/reducers/encounter";
+
+import NavBar from './navBar';
 
 class Triggers extends Component {
     constructor() {
@@ -19,106 +24,119 @@ class Triggers extends Component {
     componentWillMount() {
         this.props.getUserInfo();
         this.props.getTriggers();
+        console.log(this.props.match.path);
     };
 
     componentWillReceiveProps = (props) => {
         this.setState({ triggersToDisplay: props.allTriggers})
-    }
-
-    logout() {
-        this.props.logout();
-          
     };
 
+    selectEncounterandMRN= (encounterid, MRN) => {
+        this.props.selectEncounter(encounterid);
+        this.props.selectMRN(MRN);
+    };
 
     render() {
         return (
-        <div>
+        <div className="App">
             {this.props.loginStatus==='Success'
             ?
-                <div className="App">
-                    <header className="App-header">
-                        <img src={logo} className="App-logo" alt="logo" />
-                        <p className="App-title">Safety<b>Surveillance</b></p>
-                        <p className="Nav-tabs">Triggers</p>
-                        <p className="Nav-tabs">Chart Review</p>
-                        <p className="Nav-tabs">Risk Prediction</p>
-                        <p className="Nav-tabs">Adverse Events</p>
-                        <p> {this.props.username} <Link to={"/"}><button onClick={()=>this.logout()}>Logout</button></Link> </p>
-                    </header>
-                
-                    <body>
+                <div className='body'>
+                    <NavBar bar={this.props.match.path}/>
 
                     <div className="HospitalInfoBar">
-                        <h4>Healthcare System:</h4>
+                        <div className='Healthsystem'>
+                            Healthcare System:
+                            <div className='Hospitalsystem'>
+                                Risk Hospital
+                            </div>
+                        </div>
 
-                        <h3>Number of Patienrs with Positive Triggers:</h3>
-                    
+
+
+                        <div className="TriggercheckBox">
+                            <input type="checkbox"></input>Assigned To Me
+                            <input type="checkbox"></input>Trigeer Events I'm Watching
+                        </div>
                     </div>
 
+                    <div className='VolumnTitle'>Number of Patients with Positive Triggers:</div>
                     <div className="TriggerVolumnBar">
-
-                        <li onClick={() => this.setState({ triggersToDisplay: this.props.allTriggers })}> <div id="all" > {this.props.allTriggers.length} All</div></li>
-                        <li onClick={()=>this.setState({ triggersToDisplay: this.props.coagulationTriggers })}> {this.props.coagulationTriggers.length} Coagulation</li>
-                        <li onClick={()=>this.setState({triggersToDisplay: this.props.glycemicTriggers })}> {this.props.glycemicTriggers.length} Glycemic</li>
-                        <li onClick={()=>this.setState({triggersToDisplay: this.props.infectionsTriggers })}> {this.props.infectionsTriggers.length} Healthcare Associated Infections</li>
-                        <li onClick={()=>this.setState({triggersToDisplay: this.props.medicationTriggers })}> {this.props.medicationTriggers.length} Medication Reversal</li>
-                        <li onClick={()=>this.setState({triggersToDisplay: this.props.painTriggers })}> {this.props.painTriggers.length} Pain Management</li>
-                        <li onClick={()=>this.setState({triggersToDisplay: this.props.patientCareTriggers })}> {this.props.patientCareTriggers.length} Patient Care</li>
-                        <li onClick={()=>this.setState({triggersToDisplay: this.props.pediatricTriggers })}> {this.props.pediatricTriggers.length} Pediatric</li>
-                        <li onClick={()=>this.setState({triggersToDisplay: this.props.perinatalTriggers })}> {this.props.perinatalTriggers.length} Perinatal</li>
-                        <li onClick={()=>this.setState({triggersToDisplay: this.props.readmissionTriggers })}> {this.props.readmissionTriggers.length} Readmission</li>
-                        <li onClick={()=>this.setState({triggersToDisplay: this.props.renalInjuryTriggers })}> {this.props.renalInjuryTriggers.length} Renal Injury</li>
-                        <li onClick={()=>this.setState({triggersToDisplay: this.props.surgicalTriggers })}> {this.props.surgicalTriggers.length} Surgical</li>
-                    
+                        <div className='TriggerVolumncontent'>
+                            <li className={this.state.triggersToDisplay===this.props.allTriggers ?'TriggerCatgoryActive' : 'TriggerCatgoryInactive'} onClick={() => this.setState({ triggersToDisplay: this.props.allTriggers })}> <div className='VolumnNum'> {this.props.allTriggers.length}</div> <div className='VolumnNM'> All</div></li>
+                            <li className={this.state.triggersToDisplay===this.props.coagulationTriggers ?'TriggerCatgoryActive' : 'TriggerCatgoryInactive'} onClick={()=>this.setState({triggersToDisplay: this.props.coagulationTriggers })}> <div className='VolumnNum'> {this.props.coagulationTriggers.length} </div> <div className='VolumnNM'> Coagulation</div></li>
+                            <li className={this.state.triggersToDisplay===this.props.glycemicTriggers ?'TriggerCatgoryActive' : 'TriggerCatgoryInactive'} onClick={()=>this.setState({triggersToDisplay: this.props.glycemicTriggers })}> <div className='VolumnNum'> {this.props.glycemicTriggers.length} </div> <div className='VolumnNM'> Glycemic</div></li>
+                            <li className={this.state.triggersToDisplay===this.props.infectionsTriggers ?'TriggerCatgoryActive' : 'TriggerCatgoryInactive'} onClick={()=>this.setState({triggersToDisplay: this.props.infectionsTriggers })}> <div className='VolumnNum'>  {this.props.infectionsTriggers.length} </div> <div className='VolumnNM'> Healthcare Associated Infections</div></li>
+                            <li className={this.state.triggersToDisplay===this.props.medicationTriggers ?'TriggerCatgoryActive' : 'TriggerCatgoryInactive'} onClick={()=>this.setState({triggersToDisplay: this.props.medicationTriggers })}> <div className='VolumnNum'> {this.props.medicationTriggers.length}</div> <div className='VolumnNM'>  Medication Reversal</div></li>
+                            <li className={this.state.triggersToDisplay===this.props.painTriggers ?'TriggerCatgoryActive' : 'TriggerCatgoryInactive'} onClick={()=>this.setState({triggersToDisplay: this.props.painTriggers })}> <div className='VolumnNum'> {this.props.painTriggers.length} </div> <div className='VolumnNM'> Pain Management</div></li>
+                            <li className={this.state.triggersToDisplay===this.props.patientCareTriggers ?'TriggerCatgoryActive' : 'TriggerCatgoryInactive'} onClick={()=>this.setState({triggersToDisplay: this.props.patientCareTriggers })}> <div className='VolumnNum'> {this.props.patientCareTriggers.length} </div> <div className='VolumnNM'> Patient Care</div></li>
+                            <li className={this.state.triggersToDisplay===this.props.pediatricTriggers ?'TriggerCatgoryActive' : 'TriggerCatgoryInactive'} onClick={()=>this.setState({triggersToDisplay: this.props.pediatricTriggers })}> <div className='VolumnNum'> {this.props.pediatricTriggers.length} </div> <div className='VolumnNM'> Pediatric</div></li>
+                            <li className={this.state.triggersToDisplay===this.props.perinatalTriggers ?'TriggerCatgoryActive' : 'TriggerCatgoryInactive'} onClick={()=>this.setState({triggersToDisplay: this.props.perinatalTriggers })}> <div className='VolumnNum'> {this.props.perinatalTriggers.length} </div> <div className='VolumnNM'> Perinatal</div></li>
+                            <li className={this.state.triggersToDisplay===this.props.readmissionTriggers ?'TriggerCatgoryActive' : 'TriggerCatgoryInactive'} onClick={()=>this.setState({triggersToDisplay: this.props.readmissionTriggers })}><div className='VolumnNum'>  {this.props.readmissionTriggers.length} </div> <div className='VolumnNM'> Readmission</div></li>
+                            <li className={this.state.triggersToDisplay===this.props.renalInjuryTriggers ?'TriggerCatgoryActive' : 'TriggerCatgoryInactive'} onClick={()=>this.setState({triggersToDisplay: this.props.renalInjuryTriggers })}> <div className='VolumnNum'> {this.props.renalInjuryTriggers.length} </div> <div className='VolumnNM'> Renal Injury</div></li>
+                            <li className={this.state.triggersToDisplay===this.props.surgicalTriggers ?'TriggerCatgoryActive' : 'TriggerCatgoryInactive'} onClick={()=>this.setState({triggersToDisplay: this.props.surgicalTriggers })}> <div className='VolumnNum'> {this.props.surgicalTriggers.length} </div> <div className='VolumnNM'> Surgical</div></li>                   
+                        </div>
                     </div>
-                    <div>
-                    
-                    <table>
-                        <tr>
-                            <th>Status</th>
-                            <th>Patient</th>
-                            <th>Positive Trigger</th>
-                            <th>Triggering Event</th>
-                            <th>Trigger Date/Time</th>
-                            <th>Unit</th>
-                            <th>LOS</th>
-                            <th>Adverse Event</th>
 
-                        </tr>
-                        
-                            {this.state.triggersToDisplay.map((trigger) => {
+                    <table className='TriggersTableHeader'> 
+                        <tbody>
+                                <tr className='TableColumnHeader'>
+                                    <th id='TriggersStatus'>Status</th>
+                                    <th id='TriggersPatient'>Patient</th>
+                                    <th id='TriggersPositiveTrigger'>Positive Trigger</th>
+                                    <th id='TriggersEvent'>Triggering Event</th>
+                                    <th id='TriggersDTS'>Trigger Date/Time</th>
+                                    <th id='TriggersUnit'>Unit</th>
+                                    <th id='TriggersLOS'>LOS</th>
+                                    <th id='TriggersAE'>Adverse Event</th>
 
-                                return (
-                                    <tr>
-                                        <td>{trigger.triggerstatus}</td>
-                                        <td>{trigger.patientlastnm+', '+trigger.patientfirstnm} {'Visit#: '+trigger.triggerencounterid}</td>
-                                        <Link to={"/triggerdetail/"+trigger.triggersourcedataid}><td onClick={()=>this.props.selectTrigger(trigger.triggersourcedataid)}>{trigger.triggernm}</td></Link>
-                                        <td>{trigger.triggerdsc} {trigger.triggervaluedsc+' '+trigger.triggerunitdsc}</td>
-                                        <td>{trigger.triggerdts}</td>
-                                        <td>{trigger.triggerunitnm}</td>
-                                        <td>{trigger.los}</td>
-                                        <td>{trigger.aeflg ?(trigger.aeflg==='Y'?'Yes':'No'):'--'}</td>
-                                    </tr>
-                                )
-                            })}
-                        
-                    </table>
+                                </tr>
+                        </tbody>    
+                    </table>   
 
-                    </div>
-                    </body>
-                
+                    <table className='TriggersTable'> 
+                        <tbody>            
+                                    {this.state.triggersToDisplay.map((trigger) => {
+
+                                        return (
+                                            <tr className='Tabledata'>
+                                                <td id='TriggersStatus' className='TriggerStatus'>{trigger.triggerstatus==='Not Reviewed'
+                                                        ?<img src={statusimg} className="Status-Img" alt="status" />
+                                                        :<img src={statusdoneimg} className="StatusDone-Img" alt="status" />}
+                                                    {trigger.triggerstatus}</td>
+                                                
+                                                <td id='TriggersPatient' onClick={()=>this.selectEncounterandMRN(trigger.triggerencounterid, trigger.mrn)}>
+                                                    <Link to={"/encounter"}> {trigger.patientlastnm+', '+trigger.patientfirstnm}</Link>
+                                                    <div>{'Visit#: '+trigger.triggerencounterid}</div>
+                                                </td>
+                                                <td id='TriggersPositiveTrigger' onClick={()=>this.props.selectTrigger(trigger.triggersourcedataid)}>
+                                                    <Link to={"/triggerdetail/"+trigger.triggersourcedataid}>{trigger.triggernm}</Link>
+                                                </td>
+                                                <td id='TriggersEvent'><b>{trigger.triggerdsc} {trigger.triggervaluedsc+' '+trigger.triggerunitdsc}</b></td>
+                                                <td id='TriggersDTS'>{trigger.triggerdts.substr(0, 10)+ ' '+ trigger.triggerdts.substr(11, 5)}</td>
+                                                <td id='TriggersUnit'>{trigger.triggerunitnm}</td>
+                                                <td id='TriggersLOS'>{trigger.los}</td>
+                                                <td id='TriggersAE'><div className={trigger.aeflg==='Y'?'AEY':(trigger.aeflg==='N'?'AEN':'')}>{trigger.aeflg ?(trigger.aeflg==='Y'?'Yes':'No'):'--'}</div></td>
+                                            </tr>
+                                        )
+                                    })}
+                        </tbody>    
+                    </table>    
+                    <p className='FootNotes'>© Health Catalyst, Inc.  All Rights Reserved</p>
+                    <p className='FootNotes'>CONFIDENTIAL:  Patient Safety Work Product.  Protected under the Patient Safety Quality Improvement Act.</p>
+                    <p className='FootNotes'>Do not disclose unless authorized by Health Catalyst Patient Safety Organization #54375876</p>           
                 </div>
+
+
                 :
-                <div>
+                <div className='body'>
                     {this.props.loginStatus==='Pending'
                         ?
                         <h2>Loading...</h2>
                         :
-                        <div>
-                        <h2>Invalid username or password!!!</h2>
-                        
-                        <Link to={"/"}><button>Login Again</button></Link>
+                        <div className='LoginFail'>
+                            <h2>Invalid username or password!!!</h2>
+                            <Link to={"/"}><button>Login Again</button></Link>
                         </div>
                     }
                 </div>
@@ -144,8 +162,9 @@ const mapStateToProps = state => {
         readmissionTriggers:state.triggers.readmissionTriggers,
         renalInjuryTriggers:state.triggers.renalInjuryTriggers,
         surgicalTriggers:   state.triggers.surgicalTriggers,
-        selectedTriggerSourceDataID: state.triggerDetail.selectedTriggerSourceDataID
+        selectedTriggerSourceDataID: state.triggerDetail.selectedTriggerSourceDataID,
+        selectedpatientencounterid: state.encounter.selectedpatientencounterid
     }
 }
 
-export default connect( mapStateToProps, {logout: logout, getTriggers: getTriggers, getUserInfo: getUserInfo, selectTrigger:selectTrigger} )(Triggers);
+export default connect( mapStateToProps, {getTriggers: getTriggers, getUserInfo: getUserInfo, selectTrigger:selectTrigger, selectEncounter:selectEncounter, selectMRN:selectMRN} )(Triggers);

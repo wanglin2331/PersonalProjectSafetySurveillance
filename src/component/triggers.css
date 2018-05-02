@@ -1,0 +1,233 @@
+
+.HospitalInfoBar {
+    height: 20px;
+    margin-left: 100px;
+    margin-right: 150px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+.Healthsystem{
+    color: #767676; 
+}
+
+.Hospitalsystem{
+    color: #00AEFF;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Open Sans,sans-serif!important;
+}
+
+.TriggercheckBox input {
+    margin-left: 30px;
+}
+
+.VolumnTitle {
+    color: #767676; 
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 100px;
+    padding-top: 20px;
+}
+  
+  .TriggerVolumnBar {
+    height: 104px;
+    width: 100%;
+    border-top: 3px solid #384655;
+    border-bottom: 3px solid #D9D9D9;
+    background-color: #006D9A;
+  }
+
+  .TriggerVolumncontent {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    margin-left: 100px;
+    margin-right: 150px;
+   
+  }
+
+.VolumnNum {
+    font-size: 28px;
+    font-weight: 700;
+    font-family: Open Sans,sans-serif!important;
+}
+
+.VolumnNM {
+    font-size: 14px;
+    font-weight: 700;
+    font-family: Open Sans,sans-serif!important;
+}
+
+.TriggerCatgoryInactive{
+    box-sizing: border-box;
+    width: 110px;
+    height: 104px;
+    border-right: 3px solid #384655;
+    cursor: pointer;
+    padding-left:5px;
+    padding-right:5px;
+    text-align: center;
+    word-wrap: auto;
+    background-color: #2E546D;
+    color: #8BB1DA;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .TriggerCatgoryActive{
+    box-sizing: border-box;
+    width: 110px;
+    height: 104px;
+    border-right: 3px solid #384655;
+    cursor: pointer;
+    padding-left:5px;
+    padding-right:5px;
+    text-align: center;
+    word-wrap: auto;
+    background-color: #00AEFF;
+    color: white;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .TriggersTableHeader {
+    margin-top: 20px;
+    margin-left: 120px;
+    margin-right: 170px;
+  }
+
+  .TriggersTable {
+    margin-left: 110px;
+    margin-right: 170px;
+    border-top: 2px solid #dddddd;
+    border-left: 1px solid #d7dde4;
+    border-right: 1px solid #d7dde4;
+    border-bottom: 2px solid #dddddd;
+  }
+
+  .TableColumnHeader{
+    font-family: Open Sans,sans-serif!important;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px;
+    text-align: left;
+    color: #006d9a;
+  }
+
+  .TriggersTable td {
+  /* border-top: 2px solid #dddddd; */
+
+  border-bottom: 1px solid #d7dde4;  
+  border: none;
+  height: 120px;
+}
+
+
+.Tabledata:nth-child(even) {background: #F0F3F6;}
+.Tabledata:nth-child(odd) {background: white;}
+
+table { border-collapse:collapse }    /*remove those unwanted cell borders*/
+
+#TriggersStatus {
+  width: 120px;
+}
+
+#TriggersPatient{
+  width: 160px;
+}
+#TriggersPositiveTrigger{
+  width: 150px;
+}
+#TriggersEvent{
+  width: 300px;
+}
+#TriggersDTS{
+  width: 180px;
+}
+#TriggersUnit{
+  width: 150px;
+}
+#TriggersLOS{
+  width: 60px;
+}
+
+#TriggersAE{
+  width: 60px;
+}
+
+
+.LoginFail{
+  width: 100%;
+  height: 950px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.AEY{
+  background-color: #286D97;
+  height: 30px;
+  width: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 5px;
+}
+
+.AEN{
+  background-color: #767676;
+  height: 30px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 5px;
+}
+
+.FootNotes{
+  margin-left:120px; 
+
+}
+
+.TriggerStatus{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.Status-Img {
+  width: 14px;
+  margin-right: 8px;
+  padding-left: 10px;
+}
+
+.StatusDone-Img {
+  width: 12px;
+  margin-right: 8px;
+  padding-left: 10px;
+  
+}
+
+a {
+  text-decoration: inherit;
+  color: #00AEEF;
+}
+
+a:hover {
+  text-decoration: underline;
+}

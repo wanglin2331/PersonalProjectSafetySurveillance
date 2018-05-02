@@ -1,0 +1,27 @@
+.NotDetectedBar {
+    background-color: #767676;
+    height: 63px;
+    width: 805px;
+    display: flex;
+    align-items: center;
+    padding-left: 57px;
+    color: white;
+}
+
+.AENotDetected {
+    border-right: 2px solid #C8C8C8;
+    height: 800px;
+}
+
+#NoAEWhy{
+    color: #767676;
+}
+
+#AENoNoteDTS {
+    color: #767676;
+    font-size: 13px;
+}
+
+#AENoNoteByUser{
+    padding-left: 600px;
+}
