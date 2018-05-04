@@ -61,7 +61,26 @@ module.exports = {
         db.create_comment(commentObj).then(comments => {
             res.send(comments)
         });
+    },
+
+    getYourTriggers: (req,res)=>{
+        const db = req.app.get('db');
+        const { username } = req.params;
+        db.get_yourtriggers({username})
+        .then(triggers=>{              
+            res.status(200).send(triggers);
+        })
+        .catch(err=>console.error(err))
+    },
+
+    updateTriggerUsername: (req,res)=>{
+        const db = req.app.get('db');
+        const {username} = req.body;
+        const {triggersourcedataid} = req.params;
+        db.update_triggerUsername({username, triggersourcedataid}).then(username =>{
+            res.send(username)
+        })
+        .catch(err=>console.error(err))
     }
 
 }
-

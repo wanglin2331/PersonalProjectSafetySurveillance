@@ -3,6 +3,7 @@ import axios from 'axios';
 const initialState = {
     selectedTriggerSourceDataID: '',
     triggerstatus: '',
+    triggerusername: '',
     triggerid: '',
     triggernm: '',
     triggercategorydsc: '',
@@ -56,6 +57,7 @@ export default (state = initialState, action) => {
             case 'GETTRIGGER_FULFILLED':
             return Object.assign({},state,{ 
                                     triggerstatus: action.payload.triggerstatus,
+                                    triggerusername: action.payload.username,
                                     triggerid: action.payload.triggerid,
                                     triggernm: action.payload.triggernm,
                                     triggercategorydsc: action.payload.triggercategorydsc,
@@ -104,9 +106,14 @@ export default (state = initialState, action) => {
             return Object.assign({},state,{ 
                                     triggerstatus: action.payload.triggerstatus});
 
+            case 'UPDATETRIGGERUSERNAME_FULFILLED':
+            return Object.assign({},state,{ 
+                                    triggerusername: action.payload.username});
+
             case 'CREATEADVERSEEVENT_FULFILLED':
             return Object.assign({},state,{ 
                                     triggerstatus: action.payload.triggerstatus,
+                                    triggerusername: action.payload.username,
                                     triggerid: action.payload.triggerid,
                                     triggernm: action.payload.triggernm,
                                     triggercategorydsc: action.payload.triggercategorydsc,
@@ -156,6 +163,7 @@ export default (state = initialState, action) => {
 
             case 'CREATECOMMENT_FULFILLED':
             return Object.assign({},state,{ comments: action.payload });
+
         
     default:
       return state
@@ -221,3 +229,13 @@ export function createComment(triggersourcedataid, commenttxt, commentbyuser){
     }
 };
 
+export function updateTriggerUsername(username,triggersourcedataid){
+    return {
+        type: 'UPDATETRIGGERUSERNAME',
+        payload: axios.put(`/api/assign/${triggersourcedataid}`,{ username })
+        .then( response => {
+            //   console.log('statusssssss',response.data[0]);
+        return response.data[0];
+      })
+    }
+};

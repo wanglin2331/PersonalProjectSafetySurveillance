@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './statusBar.css';
 import { connect } from "react-redux";
-import {updateTriggerStatus} from "../../redux/reducers/triggerDetail";
+import {updateTriggerStatus, updateTriggerUsername} from "../../redux/reducers/triggerDetail";
+import {assignTrigger} from "../../redux/reducers/triggers";
 
 
 class StatusBar extends Component {
@@ -10,6 +11,7 @@ class StatusBar extends Component {
         return (
             <div className='AEStatusBar'>
                     <div>
+                       
                         Status: 
                         <select className='StatusSelect' onChange={ (e) => this.props.updateTriggerStatus(e.target.value,this.props.triggersourcedataid) }>
                             <option value="" selected disabled hidden>{this.props.triggerstatus==='Not Reviewed'
@@ -23,13 +25,22 @@ class StatusBar extends Component {
                         </select>
                         
                         Assign To:
-                        <select className='AssignSelect'>
+                        <select className='AssignSelect' onChange={ (e) => this.props.updateTriggerUsername(e.target.value, this.props.triggersourcedataid)}>
+                            <option value="" selected disabled hidden>{this.props.triggerusername
+                                                                        ?this.props.triggerusername
+                                                                        :'Assign to...'}</option>
                             <option value="lin.wang">lin.wang</option>
                             <option value="valere.lemon">valere.lemon</option>
+                            <option value="alejo.jumat">alejo.jumat</option>
+                            <option value="alejo.jumat">stanley.pestotnik</option>
+                            <option value="alejo.jumat">robert.jorgensen</option>
+                            <option value="alejo.jumat">taylor.waldron</option>
                         </select>
                     </div>
                     
                     <button>Watch</button>
+
+                     {/* <button onClick={()=>this.props.getUserAssigned(this.props.selectedTriggerSourceDataID)}></button> */}
             </div>
         )
     }
@@ -37,9 +48,13 @@ class StatusBar extends Component {
 
 const mapStateToProps = state => {
     return {
+        selectedTriggerSourceDataID: state.triggerDetail.selectedTriggerSourceDataID,
+        username: state.user.username,
+        triggerusername: state.triggerDetail.triggerusername,
         triggerstatus: state.triggerDetail.triggerstatus,
-        triggersourcedataid: state.triggerDetail.triggersourcedataid
+        triggersourcedataid: state.triggerDetail.triggersourcedataid,
+        yourTriggers: state.triggers.yourTriggers
     }
 }
 
-export default connect( mapStateToProps, { updateTriggerStatus: updateTriggerStatus} )(StatusBar);
+export default connect( mapStateToProps, { updateTriggerStatus: updateTriggerStatus, updateTriggerUsername:updateTriggerUsername} )(StatusBar);

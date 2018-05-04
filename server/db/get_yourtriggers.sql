@@ -1,8 +1,10 @@
-select  e.mrn,
+select  DISTINCT
         t.triggerstatus,
         t.username,
         t.triggerid,
         r.triggernm,
+        r.triggercategorydsc,
+        r.triggertypedsc,
         t.triggersourcedataid,
         t.triggerencounterid,
         t.triggerservicedsc,
@@ -25,7 +27,11 @@ select  e.mrn,
         t.relatedeventdts,
         t.relatedeventtypedsc,
         t.relatedeventdsc,
-        adv.aeflg
+        adv.aeflg,
+        e.patientfirstnm,
+        e.patientlastnm,
+        e.mrn,
+        cast(DATE_PART('hour',coalesce(e.hospitaldischargedts,now())-e.hospitaladmitdts)/24.0 as decimal(6,1)) as LOS
 from triggers t
 INNER JOIN triggerref r
     ON r.triggerid=t.triggerid
@@ -33,5 +39,6 @@ LEFT JOIN adverseevent adv
     ON adv.triggersourcedataid::varchar =t.triggersourcedataid::varchar
 INNER JOIN encounter e
     ON e.patientencounterid=t.triggerencounterid
- WHERE e.mrn=${mrn}
-order by t.triggerdts desc
+INNER JOIN usersassign a
+    on a.triggersourcedataid::varchar=t.triggersourcedataid::varchar
+WHERE a.username=${username};

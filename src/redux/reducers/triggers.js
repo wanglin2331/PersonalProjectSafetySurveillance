@@ -12,10 +12,12 @@ const initialState = {
     perinatalTriggers:  [],
     readmissionTriggers:[],
     renalInjuryTriggers:[],
-    surgicalTriggers:   []
+    surgicalTriggers:   [],
+    username: null,
 };
 
 export default (state = initialState, action) => {
+    // console.log('this is the state in reducer',state);
     switch (action.type) {
         case 'GETTRIGGERS_FULFILLED':
         // console.log('these are the triggers',action.payload);
@@ -32,7 +34,28 @@ export default (state = initialState, action) => {
                                             renalInjuryTriggers:action.payload.filter(item => item.triggercategorydsc === 'Renal Injury'),
                                             surgicalTriggers:   action.payload.filter(item => item.triggercategorydsc === 'Surgical')
                                         }
+
                                 );
+        
+        case 'SELECTMYTRIGGERS':
+            return Object.assign({},state,{ allTriggers:        state.allTriggers.filter(item => item.username === state.username),
+                                            coagulationTriggers:state.coagulationTriggers.filter(item => item.username === state.username),
+                                            glycemicTriggers:   state.glycemicTriggers.filter(item => item.username === state.username),
+                                            infectionsTriggers: state.infectionsTriggers.filter(item => item.username === state.username),
+                                            medicationTriggers: state.medicationTriggers.filter(item => item.username === state.username),
+                                            painTriggers:       state.painTriggers.filter(item => item.username === state.username),
+                                            patientCareTriggers:state.patientCareTriggers.filter(item => item.username === state.username),
+                                            pediatricTriggers:  state.pediatricTriggers.filter(item => item.username === state.username),
+                                            perinatalTriggers:  state.perinatalTriggers.filter(item => item.username === state.username),
+                                            readmissionTriggers:state.readmissionTriggers.filter(item => item.username === state.username),
+                                            renalInjuryTriggers:state.renalInjuryTriggers.filter(item => item.username === state.username),
+                                            surgicalTriggers:   state.surgicalTriggers.filter(item => item.username === state.username)
+                                        }
+                                );                        
+
+
+        case 'GETUSERINFO_FULFILLED':
+            return Object.assign({},state,{username: action.payload.username});
 
     default:
       return state
@@ -49,5 +72,24 @@ export function getTriggers(){
             console.timeEnd('api loading time');
             return response.data;
           })
+    }
+};
+
+
+
+export function selectMyTriggers(){
+    return {
+        type: 'SELECTMYTRIGGERS'
+    }
+};
+
+export function getUserInfo(){
+    return {
+        type: 'GETUSERINFO',
+        payload: axios.get('/api/me')
+        .then( response => {
+             console.log('1111111 this is getuserinfo response.data',response.data);
+        return response.data;
+    })
     }
 };

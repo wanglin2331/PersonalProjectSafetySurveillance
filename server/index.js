@@ -42,7 +42,8 @@ app.get('/api/comments/:triggersourcedataid',Trigger_Controller.getComment);
 app.post('/api/comments/:triggersourcedataid',Trigger_Controller.createComment);
 app.get('/api/encounter/:encounterid',encounter_Controller.getEncounter);
 app.get('/api/encountertriggers/:mrn',encounter_Controller.getTriggersbyEncounter);
-
+app.get('/api/yourtriggers/:username',Trigger_Controller.getYourTriggers);
+app.put('/api/assign/:triggersourcedataid', Trigger_Controller.updateTriggerUsername);
 
 // app.post('/api/property',Property_Controller.addProperty);
 // app.delete('/api/property',Property_Controller.deleteProperty);

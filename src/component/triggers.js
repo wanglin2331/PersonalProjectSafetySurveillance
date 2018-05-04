@@ -5,7 +5,7 @@ import statusdoneimg from './statusdone.png';
 import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
 import {getUserInfo} from "../redux/reducers/user";
-import {getTriggers} from "../redux/reducers/triggers";
+import {getTriggers, selectMyTriggers} from "../redux/reducers/triggers";
 import {selectTrigger} from "../redux/reducers/triggerDetail";
 import {selectEncounter, selectMRN} from "../redux/reducers/encounter";
 
@@ -16,7 +16,8 @@ class Triggers extends Component {
         super();
     
         this.state = {
-          triggersToDisplay: []
+          triggersToDisplay: [],
+          myTriggers: 'N'
         };
 
     }
@@ -25,16 +26,28 @@ class Triggers extends Component {
         this.props.getUserInfo();
         this.props.getTriggers();
         console.log(this.props.match.path);
+        console.log(this.props.match.path);
     };
 
     componentWillReceiveProps = (props) => {
-        this.setState({ triggersToDisplay: props.allTriggers})
+        this.setState({ triggersToDisplay: props.allTriggers});
+        this.props.getUserInfo();
     };
 
     selectEncounterandMRN= (encounterid, MRN) => {
         this.props.selectEncounter(encounterid);
         this.props.selectMRN(MRN);
     };
+
+    checkAssignToMe() {
+        this.setState({myTriggers: 'Y'});
+        this.props.selectMyTriggers();
+    };
+
+    uncheckAssignToMe(){
+        this.setState({myTriggers: 'N'});
+        this.props.getTriggers();
+    }
 
     render() {
         return (
@@ -55,8 +68,8 @@ class Triggers extends Component {
 
 
                         <div className="TriggercheckBox">
-                            <input type="checkbox"></input>Assigned To Me
-                            <input type="checkbox"></input>Trigeer Events I'm Watching
+                            <input type="checkbox" onClick={()=>{this.state.myTriggers==='N'?this.checkAssignToMe():this.uncheckAssignToMe()}}></input>Assigned To Me
+                            <input type="checkbox"></input>Trigger Events I'm Watching
                         </div>
                     </div>
 
@@ -163,8 +176,17 @@ const mapStateToProps = state => {
         renalInjuryTriggers:state.triggers.renalInjuryTriggers,
         surgicalTriggers:   state.triggers.surgicalTriggers,
         selectedTriggerSourceDataID: state.triggerDetail.selectedTriggerSourceDataID,
-        selectedpatientencounterid: state.encounter.selectedpatientencounterid
+        selectedpatientencounterid: state.encounter.selectedpatientencounterid,
+        yourTriggers: state.triggers.yourTriggers
     }
 }
 
-export default connect( mapStateToProps, {getTriggers: getTriggers, getUserInfo: getUserInfo, selectTrigger:selectTrigger, selectEncounter:selectEncounter, selectMRN:selectMRN} )(Triggers);
+export default connect( mapStateToProps, 
+    {getTriggers: getTriggers,
+    getUserInfo: getUserInfo,
+    selectTrigger:selectTrigger,
+    selectEncounter:selectEncounter,
+    selectMRN:selectMRN,
+    selectMyTriggers:selectMyTriggers
+} 
+)(Triggers);

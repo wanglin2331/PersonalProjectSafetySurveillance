@@ -3,6 +3,7 @@ values
 (${triggersourcedataid},${aeflg},${aedescription},${aedts},${poa},${severity},${aelocation},${aecategory},${regreportflg},${qipflg},CURRENT_TIMESTAMP, ${notebyuser});
 
 select t.triggerstatus,
+        t.username,
         t.triggerid,
         r.triggernm,
         r.triggercategorydsc,

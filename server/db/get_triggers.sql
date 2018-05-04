@@ -1,4 +1,5 @@
 select  t.triggerstatus,
+        t.username,
         t.triggerid,
         r.triggernm,
         r.triggercategorydsc,
