@@ -4,7 +4,7 @@ import statusimg from './status.png';
 import statusdoneimg from './statusdone.png';
 import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
-import {getUserInfo} from "../redux/reducers/user";
+import {getUserInfo} from "../redux/reducers/triggers";
 import {getTriggers, selectMyTriggers} from "../redux/reducers/triggers";
 import {selectTrigger} from "../redux/reducers/triggerDetail";
 import {selectEncounter, selectMRN} from "../redux/reducers/encounter";
@@ -25,13 +25,12 @@ class Triggers extends Component {
     componentWillMount() {
         this.props.getUserInfo();
         this.props.getTriggers();
-        console.log(this.props.match.path);
-        console.log(this.props.match.path);
+        // console.log(this.props.match.path);
     };
 
     componentWillReceiveProps = (props) => {
         this.setState({ triggersToDisplay: props.allTriggers});
-        this.props.getUserInfo();
+        // this.props.getUserInfo();
     };
 
     selectEncounterandMRN= (encounterid, MRN) => {
@@ -112,7 +111,7 @@ class Triggers extends Component {
                                     {this.state.triggersToDisplay.map((trigger) => {
 
                                         return (
-                                            <tr className='Tabledata'>
+                                            <tr className='Tabledata' key={trigger.triggersourcedataid}>
                                                 <td id='TriggersStatus' className='TriggerStatus'>{trigger.triggerstatus==='Not Reviewed'
                                                         ?<img src={statusimg} className="Status-Img" alt="status" />
                                                         :<img src={statusdoneimg} className="StatusDone-Img" alt="status" />}
@@ -161,8 +160,8 @@ class Triggers extends Component {
  
 const mapStateToProps = state => {
     return {
-        username:           state.user.username,
-        loginStatus:        state.user.loginStatus,
+        username:           state.triggers.username,
+        loginStatus:        state.triggers.loginStatus,
         allTriggers:        state.triggers.allTriggers,
         coagulationTriggers:state.triggers.coagulationTriggers,
         glycemicTriggers:   state.triggers.glycemicTriggers,

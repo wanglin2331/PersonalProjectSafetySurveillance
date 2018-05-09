@@ -3,7 +3,7 @@ import './encounter.css';
 import { connect } from "react-redux";
 import {Link} from 'react-router-dom';
 
-import {getUserInfo} from "../redux/reducers/user";
+import {getUserInfo} from "../redux/reducers/triggers";
 import {getEncounter, getEncounterTriggers} from "../redux/reducers/encounter";
 
 import TimeLineBall from './TimeLineBall.png';
@@ -83,7 +83,7 @@ class Encounter extends Component {
                         <div>
                             {this.props.encounterTriggers.map((trigger) => {
                                 return (
-                                    <div className='EachTrigger'>
+                                    <div className='EachTrigger' key={trigger.triggersourcedataid}>
                                         <div id='EachTriggerDTS'><p>Trigger Date/Time</p> <p>{trigger.triggerdts.substr(0, 10)}</p> <p>{trigger.triggerdts.substr(11, 5)}</p> </div>
                                         <div id='encounterVL'><img src={TimeLineBall} id='ball' alt="status" /> </div>     
                                         

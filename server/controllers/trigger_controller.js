@@ -3,7 +3,7 @@ module.exports = {
         const db = req.app.get('db');
         db.get_triggers()
         .then(triggers=>{  
-            req.session.user.triggers=triggers;
+            //req.session.user.triggers=triggers;
             
             res.status(200).send(triggers);
         })

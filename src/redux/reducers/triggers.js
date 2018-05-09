@@ -1,6 +1,12 @@
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
 const initialState = {
+    username: null,
+    loginStatus: null,
+
+
+
     allTriggers: [],
     coagulationTriggers:[],
     glycemicTriggers:   [],
@@ -12,13 +18,38 @@ const initialState = {
     perinatalTriggers:  [],
     readmissionTriggers:[],
     renalInjuryTriggers:[],
-    surgicalTriggers:   [],
-    username: null,
+    surgicalTriggers:   []
 };
 
 export default (state = initialState, action) => {
     // console.log('this is the state in reducer',state);
     switch (action.type) {
+        case 'LOGIN_FULFILLED':
+        console.log('this is LOGIN payload',action.payload);
+            return Object.assign({},state,{username: action.payload.username, loginStatus: 'Success'});
+
+        case 'LOGIN_PENDING':
+                return Object.assign({},state,{loginStatus: 'Pending'}); 
+
+        case 'LOGIN_REJECTED':
+        console.log('this is LOGIN rejected payload',action.payload);
+                return Object.assign({},state,{loginStatus: ''});
+
+        case 'GETUSERINFO_FULFILLED':
+        console.log('22222222 this is getuserinfo fulfilled payload',action.payload);
+                return Object.assign({},state,{username: action.payload.username, loginStatus: 'Success'});
+                
+        case 'LOGOUT_FULFILLED':
+            // console.log('this is LOGOUT payload',action.payload);
+                return Object.assign({},state,{ username: null,
+                                                loginStatus: null}
+                                        );
+
+
+
+
+
+
         case 'GETTRIGGERS_FULFILLED':
         // console.log('these are the triggers',action.payload);
             return Object.assign({},state,{ allTriggers: action.payload,
@@ -53,23 +84,57 @@ export default (state = initialState, action) => {
                                         }
                                 );                        
 
-
-        case 'GETUSERINFO_FULFILLED':
-            return Object.assign({},state,{username: action.payload.username});
-
     default:
       return state
   }
 };
 
+
+export function login(user){
+    return {
+        type: 'LOGIN',
+        payload: axios.post('/api/login', user)
+            .then( response => {
+                // console.log(response.data);
+            return response.data;
+          })
+    }
+};
+
+export function getUserInfo(){
+    return {
+        type: 'GETUSERINFO',
+        payload: axios.get('/api/me', {withCredentials: true})
+        .then( response => {
+            //  console.log('1111111 this is getuserinfo response.data',response.data);
+        return response.data;
+    })
+    }
+};
+
+export function logout(){
+    return {
+        type: 'LOGOUT',
+        payload: axios.post('/api/logout')
+            .then( response => {
+                // console.log(response.data);
+            return response.data;
+          })
+    }
+};
+
+
+
+
+
 export function getTriggers(){
-    console.time('api loading time')
+    // console.time('api loading time')
     return {
         type: 'GETTRIGGERS',
         payload: axios.get('/api/triggers')
             .then( response => {
                 //  console.log('222222222222',response.data);
-            console.timeEnd('api loading time');
+            // console.timeEnd('api loading time');
             return response.data;
           })
     }
@@ -83,13 +148,4 @@ export function selectMyTriggers(){
     }
 };
 
-export function getUserInfo(){
-    return {
-        type: 'GETUSERINFO',
-        payload: axios.get('/api/me')
-        .then( response => {
-             console.log('1111111 this is getuserinfo response.data',response.data);
-        return response.data;
-    })
-    }
-};
+

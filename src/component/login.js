@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './login.css';
 import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
-import {login} from "../redux/reducers/user";
+import {login} from "../redux/reducers/triggers";
 
 
 class Login extends Component {
@@ -50,8 +50,8 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-       username : state.user.username,
-       loginStatus: state.user.loginStatus
+       username : state.triggers.username,
+       loginStatus: state.triggers.loginStatus
     }
 }
 

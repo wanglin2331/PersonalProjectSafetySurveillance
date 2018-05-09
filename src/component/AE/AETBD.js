@@ -108,7 +108,7 @@ class AETBD extends Component {
                             ?    
                             <div className='SaveCancelButton'>
                                 <button className='CancelButton'>cancel</button>
-                                <button  className='SaveButton' onClick=
+                                <button className='SaveButton' onClick=
                                         
                                         {this.state.AEFound==='Y'
                                         ?
@@ -264,8 +264,8 @@ class AETBD extends Component {
 
                                         
                                 <span>Adverse Event Category</span>
-                                <select disabled className='AECategoryInput' >
-                                    <option value="" selected disabled hidden></option>
+                                <select disabled defaultValue="" className='AECategoryInput' >
+                                    <option value="" disabled hidden></option>
                                     <option value="Events related to Medication / IV fluids">Events related to Medication / IV fluids</option>
                                     <option value="Events related to Perinatal Care">Events related to Perinatal Care</option>
                                     <option value="Events related to surgery or other procedures">Events related to surgery or other procedures</option>
@@ -291,7 +291,7 @@ class AETBD extends Component {
 const mapStateToProps = state => {
     return {
         
-        username: state.user.username,
+        username: state.triggers.username,
         triggersourcedataid: state.triggerDetail.triggersourcedataid,
         triggerunitnm: state.triggerDetail.triggerunitnm,
         triggerdts: state.triggerDetail.triggerdts,     

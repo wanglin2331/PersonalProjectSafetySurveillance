@@ -10,53 +10,56 @@ class Detail extends Component {
                     
                     <div className='Line'> Patient <hr width="470" ></hr> </div>
                    <table>
-                        <tr>
-                            <td id='PatTitle'>Patient:</td>
-                            <td id='PatTitle'>MRN:</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td id='PatTitle'>Patient:</td>
+                                <td id='PatTitle'>MRN:</td>
+                            </tr>
 
-                        <tr>
-                            <td>{this.props.patientlastnm+', '+this.props.patientfirstnm}</td>
-                            <td>{this.props.mrn}</td>
-                        </tr>
+                            <tr>
+                                <td>{this.props.patientlastnm+', '+this.props.patientfirstnm}</td>
+                                <td>{this.props.mrn}</td>
+                            </tr>
 
-                        <tr>
-                            <td id='VisitNUM'>Visit #: </td>
-                        </tr>
-                        <tr>
-                            <td>{this.props.triggerencounterid}</td>
-                        </tr>
+                            <tr>
+                                <td id='VisitNUM'>Visit #: </td>
+                            </tr>
+                            <tr>
+                                <td>{this.props.triggerencounterid}</td>
+                            </tr>
+                        </tbody>
                     </table>
 
             
                     <div className='Line'> Trigger Event <hr width="420"></hr> </div> 
                     <table className='TriggerDetailTable'>
-                        <tr>
-                            <td>Trigger Date/Time: </td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>Trigger Date/Time: </td>
+                            </tr>
 
-                        <tr>
-                            <td><b>{this.props.triggerdts.substr(0, 10)} {this.props.triggerdts.substr(11, 5)}</b></td>
-                        </tr>
+                            <tr>
+                                <td><b>{this.props.triggerdts.substr(0, 10)} {this.props.triggerdts.substr(11, 5)}</b></td>
+                            </tr>
 
-                        <tr>
-                            <td>Trigger Description:</td>
-                        </tr>
-                        
-                        <tr>
-                            <td><b>{this.props.triggerdsc} {this.props.triggervaluedsc+' '+this.props.triggerunitdsc}</b></td>
-                        </tr>
+                            <tr>
+                                <td>Trigger Description:</td>
+                            </tr>
+                            
+                            <tr>
+                                <td><b>{this.props.triggerdsc} {this.props.triggervaluedsc+' '+this.props.triggerunitdsc}</b></td>
+                            </tr>
 
-                        <tr>
-                            <td id='Location'>Location:</td>
-                            <td>Service:</td>
-                        </tr>
+                            <tr>
+                                <td id='Location'>Location:</td>
+                                <td>Service:</td>
+                            </tr>
 
-                        <tr>
-                            <td><b>{this.props.locationnm}</b></td>
-                            <td><b>{this.props.triggerservicedsc}</b></td>
-                        </tr>
-
+                            <tr>
+                                <td><b>{this.props.locationnm}</b></td>
+                                <td><b>{this.props.triggerservicedsc}</b></td>
+                            </tr>
+                        </tbody>
                     </table>
             </div>
         )

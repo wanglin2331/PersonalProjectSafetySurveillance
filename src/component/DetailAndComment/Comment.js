@@ -39,7 +39,7 @@ class Comment extends Component {
                     ? 
                         <div>{this.props.comments.map((comment) => {
                             return (
-                                <div className='Comment'>
+                                <div className='Comment' key={comment.commentdts}>
                                     
                                     <div className='CommentUser'>
                                         <span><b>{comment.commentbyuser}</b></span>
@@ -62,7 +62,7 @@ class Comment extends Component {
 
 const mapStateToProps = state => {
     return {
-        username: state.user.username,
+        username: state.triggers.username,
         triggersourcedataid: state.triggerDetail.triggersourcedataid,
         comments: state.triggerDetail.comments
     }

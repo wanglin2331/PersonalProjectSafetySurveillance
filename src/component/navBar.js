@@ -4,7 +4,7 @@ import logo from '../HCLogo.jpg';
 import appTitle from '../apptitle.svg';
 import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
-import {logout} from "../redux/reducers/user";
+import {logout} from "../redux/reducers/triggers";
 
 
 class NavBar extends Component {
@@ -14,7 +14,7 @@ class NavBar extends Component {
     };
 
     render() {
-        console.log('navvvvvvvvpathhhhhh',this.props.bar)
+        // console.log('navvvvvvvvpathhhhhh',this.props.bar)
         return (
             <div className='Nav-top'>
                 <header className="Nav-bar">
@@ -33,7 +33,7 @@ class NavBar extends Component {
 
 const mapStateToProps = state => {
     return {
-        username: state.user.username
+        username: state.triggers.username
     }
 }
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './statusBar.css';
 import { connect } from "react-redux";
 import {updateTriggerStatus, updateTriggerUsername} from "../../redux/reducers/triggerDetail";
-import {assignTrigger} from "../../redux/reducers/triggers";
 
 
 class StatusBar extends Component {
@@ -13,8 +12,12 @@ class StatusBar extends Component {
                     <div>
                        
                         Status: 
-                        <select className='StatusSelect' onChange={ (e) => this.props.updateTriggerStatus(e.target.value,this.props.triggersourcedataid) }>
-                            <option value="" selected disabled hidden>{this.props.triggerstatus==='Not Reviewed'
+                        <select className='StatusSelect'
+                                defaultValue={  this.props.triggerstatus==='Not Reviewed'
+                                                ?'Set Status...'
+                                                :this.props.triggerstatus}
+                                onChange={ (e) => this.props.updateTriggerStatus(e.target.value,this.props.triggersourcedataid) }>
+                            <option disabled hidden>{this.props.triggerstatus==='Not Reviewed'
                                                                         ?'Set Status...'
                                                                         :this.props.triggerstatus}</option>
                             <option value="In-Progress">In-Progress</option>
@@ -25,16 +28,20 @@ class StatusBar extends Component {
                         </select>
                         
                         Assign To:
-                        <select className='AssignSelect' onChange={ (e) => this.props.updateTriggerUsername(e.target.value, this.props.triggersourcedataid)}>
-                            <option value="" selected disabled hidden>{this.props.triggerusername
+                        <select className='AssignSelect'
+                                defaultValue={  this.props.triggerusername
+                                                ?this.props.triggerusername
+                                                :'Assign to...'}
+                                onChange={ (e) => this.props.updateTriggerUsername(e.target.value, this.props.triggersourcedataid)}>
+                            <option disabled hidden>{this.props.triggerusername
                                                                         ?this.props.triggerusername
                                                                         :'Assign to...'}</option>
                             <option value="lin.wang">lin.wang</option>
                             <option value="valere.lemon">valere.lemon</option>
                             <option value="alejo.jumat">alejo.jumat</option>
-                            <option value="alejo.jumat">stanley.pestotnik</option>
-                            <option value="alejo.jumat">robert.jorgensen</option>
-                            <option value="alejo.jumat">taylor.waldron</option>
+                            <option value="stanley.pestotnik">stanley.pestotnik</option>
+                            <option value="robert.jorgensen">robert.jorgensen</option>
+                            <option value="taylor.waldron">taylor.waldron</option>
                         </select>
                     </div>
                     
@@ -49,7 +56,7 @@ class StatusBar extends Component {
 const mapStateToProps = state => {
     return {
         selectedTriggerSourceDataID: state.triggerDetail.selectedTriggerSourceDataID,
-        username: state.user.username,
+        username: state.triggers.username,
         triggerusername: state.triggerDetail.triggerusername,
         triggerstatus: state.triggerDetail.triggerstatus,
         triggersourcedataid: state.triggerDetail.triggersourcedataid,

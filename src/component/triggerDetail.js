@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './triggerDetail.css';
 import { connect } from "react-redux";
-import {getUserInfo} from "../redux/reducers/user";
+import {getUserInfo} from "../redux/reducers/triggers";
 import {getTrigger, getComments} from "../redux/reducers/triggerDetail";
 import {Link} from 'react-router-dom';
 
@@ -37,7 +37,7 @@ class TriggerDetail extends Component {
                 <div className='body'>
                     <NavBar bar={this.props.match.path}/>
                     
-                    <div className='AETriggerNMBar'> <Link to={"/triggers"} className='BackArrow'>&#60;</Link> <div class="vl"></div> Trigger: {this.props.triggernm}</div>
+                    <div className='AETriggerNMBar'> <Link to={"/triggers"} className='BackArrow'>&#60;</Link> <div className="vl"></div> Trigger: {this.props.triggernm}</div>
                     
                     <StatusBar/>
 
