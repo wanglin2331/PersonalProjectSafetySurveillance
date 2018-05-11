@@ -36,7 +36,7 @@ class Login extends Component {
                         Username
                         <input onChange={ (e) => this.handleChangeUsername(e.target.value) }></input>
                         Password
-                        <input onChange={ (e) => this.handleChangePassword(e.target.value) }></input>
+                        <input id="PasswordInput" onChange={ (e) => this.handleChangePassword(e.target.value) }></input>
                         
                         <div>
                             <Link to={"/triggers"}><button onClick={()=>this.login()}>Login</button></Link> 

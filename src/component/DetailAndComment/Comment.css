@@ -31,6 +31,18 @@
     font-weight: 700px;
  }
 
+ .DeleteCommentButton {
+    /* margin-left: 120px; */
+    height: 15px;
+    width: 20px;
+    background-color: #D9DADB;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 700px;
+ }
+
  .CommentButtonActive {
     height: 30px;
     width: 120px;
@@ -59,6 +71,7 @@
  }
 
  #CommentDTS{
+     margin-left: 10px;
      color: #767676;
      font-size: 14px;
  }

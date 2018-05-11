@@ -63,6 +63,19 @@ module.exports = {
         });
     },
 
+    deleteComment: (req,res)=> {
+        const db = req.app.get('db');
+        const { triggersourcedataid, commentid } = req.params;
+        const {username} = req.session.user;
+        
+        db.delete_comment({commentid,triggersourcedataid, username})
+        .then(
+            comments=> {
+                res.send(comments)
+        })
+        .catch(err=>console.error(err))
+    },
+
     getYourTriggers: (req,res)=>{
         const db = req.app.get('db');
         const { username } = req.params;

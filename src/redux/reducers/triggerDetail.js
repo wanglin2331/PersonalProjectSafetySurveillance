@@ -164,6 +164,9 @@ export default (state = initialState, action) => {
             case 'CREATECOMMENT_FULFILLED':
             return Object.assign({},state,{ comments: action.payload });
 
+            case 'DELETECOMMENT_FULFILLED':
+            return Object.assign({},state,{ comments: action.payload });
+
         
     default:
       return state
@@ -223,6 +226,16 @@ export function createComment(triggersourcedataid, commenttxt, commentbyuser){
     return {
         type: 'CREATECOMMENT',
         payload: axios.post(`/api/comments/${triggersourcedataid}`, {triggersourcedataid, commenttxt, commentbyuser})
+        .then( response => {
+        return response.data;
+      })
+    }
+};
+
+export function deleteComment(commentid, triggersourcedataid){
+    return {
+        type: 'DELETECOMMENT',
+        payload: axios.delete(`/api/comments/${triggersourcedataid}/${commentid}`)
         .then( response => {
         return response.data;
       })

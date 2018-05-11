@@ -45,9 +45,12 @@ qipflg varchar(10)
 
 
 create table comments
-(triggersourcedataid varchar(100),
+(
+commentid SERIAL PRIMARY KEY,
+triggersourcedataid varchar(100),
 commentTXT text,
-commentDTS TIMESTAMP
+commentDTS TIMESTAMP,
+commentbyuser varchar(100)
 );
 
 

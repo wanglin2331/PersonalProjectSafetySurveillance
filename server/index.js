@@ -22,7 +22,7 @@ app.use(session({
 
 app.use(checkForSession);
 
-//app.use(express.static('../build'));//////////////run  npm run build in houser folder and include this line, you have to run this npm run build everytime you make a change in the react.
+app.use(express.static('../build'));//////////////run  npm run build in houser folder and include this line, you have to run this npm run build everytime you make a change in the react.
 
 massive(process.env.CONNECTION_STRING).then(db => {         
     app.set('db',db);
@@ -43,6 +43,7 @@ app.put('/api/:triggersourcedataid',Trigger_Controller.updateTriggerStatus);
 app.post('/api/ae/:triggersourcedataid',Trigger_Controller.createAdverseEvent);
 app.get('/api/comments/:triggersourcedataid',Trigger_Controller.getComment);
 app.post('/api/comments/:triggersourcedataid',Trigger_Controller.createComment);
+app.delete('/api/comments/:triggersourcedataid/:commentid',Trigger_Controller.deleteComment);
 app.get('/api/encounter/:encounterid',encounter_Controller.getEncounter);
 app.get('/api/encountertriggers/:mrn',encounter_Controller.getTriggersbyEncounter);
 app.get('/api/yourtriggers/:username',Trigger_Controller.getYourTriggers);

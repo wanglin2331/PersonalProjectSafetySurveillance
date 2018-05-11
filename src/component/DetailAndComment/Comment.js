@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Comment.css';
 import { connect } from "react-redux";
-import { createComment} from "../../redux/reducers/triggerDetail";
+import { createComment, deleteComment} from "../../redux/reducers/triggerDetail";
 
 
 
@@ -42,11 +42,18 @@ class Comment extends Component {
                                 <div className='Comment' key={comment.commentdts}>
                                     
                                     <div className='CommentUser'>
-                                        <span><b>{comment.commentbyuser}</b></span>
-                                        <span id='CommentDTS'>{comment.commentdts.substr(0, 10)+ ' '+comment.commentdts.substr(11, 5)}</span>
+                                        <span><b>{comment.commentbyuser}</b><span id='CommentDTS'>{comment.commentdts.substr(0, 10)+ ' '+comment.commentdts.substr(11, 5)}</span></span>
+                                        
+                                        
+                                        <button className='DeleteCommentButton' onClick={()=>this.props.deleteComment(
+                                        comment.commentid,
+                                        this.props.triggersourcedataid)}>
+                                        X
+                                        </button>
                                     </div>
 
-                                    <p id='Comment'>{comment.commenttxt}</p>
+                                    <p id='Comment'>{comment.commenttxt}</p> 
+                                    
                                     <hr width="550"></hr>
                                 </div>   
                                 )}
@@ -68,4 +75,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect( mapStateToProps,{  createComment: createComment } )(Comment);
+export default connect( mapStateToProps,{  createComment: createComment, deleteComment:deleteComment } )(Comment);

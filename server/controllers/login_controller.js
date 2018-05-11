@@ -1,6 +1,6 @@
 module.exports = {
     login: (req,res,next)=>{
-        console.log(1, req.session)
+        console.log(1, req.session.user)
         const db = req.app.get('db');
         const {username, password} = req.body;
         db.get_user({username, password})
@@ -20,7 +20,7 @@ module.exports = {
     },
 
     getUserInfo: (req, res) => {
-        console.log(2, req.session)
+        console.log(2, req.session.user)
         // console.log(1111, 'getUserInfo', req.session.user.username)
         if (req.session.user.username) {
             // console.log('this is getuserinfo req.session.user',req.session.user.username);
