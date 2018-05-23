@@ -7,10 +7,12 @@ require('dotenv').config();
 const app = express();
 const checkForSession = require('./checkForSession');
 
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}));
+const path = require('path');
+
+// app.use(cors({
+//     origin: 'http://localhost:3000',
+//     credentials: true
+// }));
 app.use(bodyParser.json());
 
 app.use(session({
@@ -22,7 +24,8 @@ app.use(session({
 
 app.use(checkForSession);
 
-app.use(express.static('../build'));//////////////run  npm run build in houser folder and include this line, you have to run this npm run build everytime you make a change in the react.
+app.use(express.static(`${__dirname}/../build`));//////////////run  npm run build in houser folder and include this line, you have to run this npm run build everytime you make a change in the react.
+
 
 massive(process.env.CONNECTION_STRING).then(db => {         
     app.set('db',db);
@@ -49,8 +52,11 @@ app.get('/api/encountertriggers/:mrn',encounter_Controller.getTriggersbyEncounte
 app.get('/api/yourtriggers/:username',Trigger_Controller.getYourTriggers);
 app.put('/api/assign/:triggersourcedataid', Trigger_Controller.updateTriggerUsername);
 
-// app.post('/api/property',Property_Controller.addProperty);
-// app.delete('/api/property',Property_Controller.deleteProperty);
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});             //put this in the end of all the endpoint, so those axios api call would work
+
+
 
 const port = process.env.PORT || 8888;
 app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
